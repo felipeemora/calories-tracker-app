@@ -1,16 +1,9 @@
-import { Activity } from "../types"
+import { useActivity } from '../hooks/useActivity';
 import { CalorieDisplay } from './CalorieDisplay';
 
-type CalorieTrackerProps = {
-  activities: Activity[],
-}
+export const CalorieTracker = () => {
 
-export const CalorieTracker = ({ activities }: CalorieTrackerProps) => {
-
-  // Contadores
-  const caloriesConsumed = activities.reduce((total, activity) => activity.category === 1 ? total + activity.calories: total, 0);
-  const caloriesBurned = activities.reduce((total, activity) => activity.category === 2 ? total + activity.calories: total, 0);
-  const netCalories = caloriesConsumed - caloriesBurned;
+  const {caloriesConsumed, caloriesBurned, netCalories } = useActivity();
 
   return (
     <>
